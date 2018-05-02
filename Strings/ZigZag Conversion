@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if(numRows==1)
+            return s;
+        string help="";
+        int currOffset, i, j, offset=2*(numRows-1);
+        for(i=0;i<numRows;i++){
+            j=i;
+            currOffset=offset-2*i;
+            while(j<s.size()){
+                help+=s[j];
+                if(currOffset<=0)
+                    currOffset=offset;
+                j+=currOffset;
+                currOffset=offset-currOffset;
+            }
+        }
+        return help;
+    }
+};
