@@ -1,0 +1,30 @@
+const int MAX_CHARS = 256;
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int chars[MAX_CHARS];
+        int i;
+        if(s.length()==0)
+            return 0;
+        for(i=0;i<MAX_CHARS;i++)
+            chars[i]=-1;
+        int maxLength=1, currLength=1;
+        chars[s[0]]=0;
+        for(i=1;i<s.length();i++){
+            if(chars[s[i]]==-1){
+                currLength++;
+                chars[s[i]]=i;
+            }
+            else{
+                if(i-chars[s[i]]<=currLength){
+                    currLength=i-chars[s[i]];
+                }
+                else
+                    currLength++;
+                 chars[s[i]]=i;
+            }
+            maxLength=max(maxLength,currLength);
+        }
+        return maxLength;
+    }
+};
