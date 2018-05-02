@@ -1,0 +1,9 @@
+class Solution {
+public:
+    int reverse(long int x) {
+        long newNumber=0;
+        for(;x!=0;x/=10)
+            newNumber=newNumber*10+(x%10);
+        return (newNumber<INT_MIN || newNumber>INT_MAX) ? 0 : newNumber;
+    }
+};
