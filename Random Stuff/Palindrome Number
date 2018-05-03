@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0)
+            return false;
+        string word=to_string(x);
+        int n=word.length();
+        int low=0, high=n-1;
+        while(low<=high)
+            if(word[low++]!=word[high--])
+                return false;
+        return true;
+    }
+};
