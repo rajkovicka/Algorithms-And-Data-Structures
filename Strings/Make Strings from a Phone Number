@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if(digits.empty())
+            return res;
+        string combinations[]={"", "", "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        string path="";
+        backtracking(digits,0,path,res,combinations);
+        return res;
+    }
+    
+    void backtracking(string digits, int pos, string &path, vector<string> &res, string combinations[]){
+        if(pos==digits.size()){
+            res.push_back(path);
+            return;
+        }
+        else{
+            for(auto c: combinations[digits[pos] - '0']){
+                path.push_back(c);
+                backtracking(digits, pos + 1, path, res, combinations);
+                path.pop_back();
+            }
+        }
+    }
+};
