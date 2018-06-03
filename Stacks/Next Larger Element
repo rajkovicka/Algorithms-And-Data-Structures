@@ -1,0 +1,50 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+void nextLargerElement(int a[], int n){
+    if(n==0)
+        return;
+    stack<int> st;
+    st.push(0);
+    int i, element;
+    int b[n];
+    for(i=0;i<n;i++)
+        b[i]=-1;
+    for(i=1;i<n;i++){
+        if(!st.empty()){
+            element=st.top();
+            st.pop();
+            while(a[element]<a[i]){
+                b[element]=a[i];
+                if(st.empty())
+                    break;
+                element=st.top();
+                st.pop();
+            }
+            if(a[element]>a[i])
+                st.push(element);
+        }
+        st.push(i);
+    }
+    while(!st.empty())
+        st.pop();
+    for(i=0;i<n;i++)
+        cout<<b[i]<<" ";
+}
+
+int main() {
+	//code
+	int t,n,i;
+	cin>>t;
+	while(t>0){
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	        cin>>a[i];
+	    nextLargerElement(a,n);
+	    cout<<endl;
+	    t--;
+	}
+	return 0;
+}
