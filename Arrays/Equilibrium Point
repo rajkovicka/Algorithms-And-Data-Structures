@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+void equilibrium(int a[], int n){
+    int leftSum=0, rightSum=0, i;
+    for(i=1;i<n;i++)
+        rightSum+=a[i];
+    for(i=0;i<n-1;i++){
+        if(leftSum==rightSum){
+            cout<<i+1<<endl;
+            return;
+        }
+        leftSum+=a[i];
+        rightSum-=a[i+1];
+    }
+    if(leftSum==rightSum){
+        cout<<i+1<<endl;
+        return;
+    }
+    cout<<"-1"<<endl;
+}
+
+int main() {
+	//code
+	int t,n,i;
+	cin>>t;
+	while(t>0){
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	        cin>>a[i];
+	    equilibrium(a,n);
+	    t--;
+	}
+	return 0;
+}
