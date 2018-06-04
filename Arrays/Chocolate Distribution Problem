@@ -1,0 +1,30 @@
+#include <iostream>
+#include <algorithm>
+#include <limits.h>
+using namespace std;
+
+void chocolateDistribution(int a[], int n, int m){
+    sort(a,a+n);
+    int i, min=INT_MAX;
+    for(i=0;i<=n-m;i++){
+        if(a[i+m-1]-a[i]<min)
+            min=a[i+m-1]-a[i];
+    }
+    cout<<min<<endl;
+}
+
+int main() {
+	//code
+	int t,n,m,i;
+	cin>>t;
+	while(t>0){
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	        cin>>a[i];
+	    cin>>m;
+	    chocolateDistribution(a,n,m);
+	    t--;
+	}
+	return 0;
+}
