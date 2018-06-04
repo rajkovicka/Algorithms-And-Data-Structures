@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+void find(int a[], int n){
+    int leftMax[n];
+    leftMax[0]=a[0]; 
+    int rightMin[n];
+    rightMin[n-1]=a[n-1];
+    int i,j=n-2;
+    for(i=1;i<n;i++){
+        leftMax[i]=max(leftMax[i-1], a[i-1]);
+        rightMin[j]=min(rightMin[j+1],a[j+1]);
+        j--;
+    }
+    for(i=1;i<n-1;i++)
+        if(a[i]>=leftMax[i] && a[i]<=rightMin[i]){
+            cout<<a[i]<<endl;
+            return;
+        }
+    cout<<"-1"<<endl;
+}
+
+int main() {
+	//code
+	int t,n,i;
+	cin>>t;
+	while(t>0){
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	        cin>>a[i];
+	    find(a,n);
+	    t--;
+	}
+	return 0;
+}
