@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	//code
+	int t,n,i,j,sum;
+	cin>>t;
+	while(t>0){
+	    cin>>n;
+	    sum=n*(n+1)/2;
+	    for(i=0;i<n-1;i++){
+	        cin>>j;
+	        sum-=j;
+	    }
+	    cout<<sum<<endl;
+	    t--;
+	}
+	return 0;
+}
