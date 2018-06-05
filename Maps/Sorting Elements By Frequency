@@ -1,0 +1,55 @@
+#include <iostream>
+#include <map>
+#include <vector>
+#include <iterator>
+using namespace std;
+
+void sortElemsByFreq(int a[], int n){
+    if(n==0)
+        return;
+    map<int, int> m;
+    map<int, int>::iterator it;
+    int i;
+    for(i=0;i<n;i++){
+        it=m.find(a[i]);
+        if(it==m.end())
+            m.insert(std::pair<int, int>(a[i],1));
+        else
+            m[a[i]]++;
+    }
+    map<int, vector<int>> m1;
+    map<int, vector<int>>::iterator it1;
+    for(it=m.begin();it!=m.end();it++){
+        it1=m1.find(it->second);
+        if(it1==m1.end()){
+            vector<int> v;
+            v.push_back(it->first);
+            m1.insert(std::pair<int, vector<int>>(it->second, v));
+        }
+        else
+            m1[it->second].push_back(it->first);
+    }
+    vector<int>::iterator it2;
+    map<int, vector<int>>::reverse_iterator it3;
+    for(it3=m1.rbegin();it3!=m1.rend();it3++){
+        for(it2=it3->second.begin();it2!=it3->second.end();it2++)
+            for(i=0;i<it3->first;i++)
+                cout<<*it2<<" ";
+    }
+    cout<<endl;
+}
+
+int main() {
+	//code
+	int t,n,i;
+	cin>>t;
+	while(t>0){
+	    cin>>n;
+	    int a[n];
+	    for(i=0;i<n;i++)
+	        cin>>a[i];
+	    sortElemsByFreq(a,n);
+	    t--;
+	}
+	return 0;
+}
