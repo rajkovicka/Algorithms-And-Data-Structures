@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+#include <map>
+using namespace std;
+
+void anagram(string word1, string word2){
+    if(word1.length()!=word2.length()){
+        cout<<"NO"<<endl;
+        return;
+    }
+    if(word1.length()==0){
+        cout<<"YES"<<endl;
+        return;
+    }
+    map<char,int> map1;
+    map<char,int>::iterator it;
+    int i;
+    for(i=0;i<word1.length();i++){
+        it=map1.find(word1[i]);
+        if(it==map1.end())
+            map1.insert(std::pair<char,int>(word1[i],1));
+        else
+            map1[word1[i]]++;
+    }
+    for(i=0;i<word2.length();i++){
+        it=map1.find(word2[i]);
+        if(it==map1.end()){
+            cout<<"NO"<<endl;
+            return;
+        }
+        else{
+            if(map1[word2[i]]==1)
+                map1.erase(it);
+            else
+                map1[word2[i]]--;
+        }
+    }
+    cout<<"YES"<<endl;
+}
+
+int main() {
+	//code
+	int t;
+	string word1,word2;
+	cin>>t;
+	while(t>0){
+	    cin>>word1;
+	    cin>>word2;
+	    anagram(word1,word2);
+	    t--;
+	}
+	return 0;
+}
