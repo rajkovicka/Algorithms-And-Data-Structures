@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+#include <string.h>
+using namespace std;
+
+int main() {
+	//code
+	int t;
+	string word1, word2, leftR,rightR;
+	cin>>t;
+	while(t>0){
+	    cin>>word1;
+	    cin>>word2;
+	    leftR=word1.substr(2,word1.length()-2)+word1.substr(0,2);
+	    rightR=word1.substr(word1.length()-2,2)+word1.substr(0, word1.length()-2);
+	    if(strcmp(word2.c_str(), leftR.c_str())==0 || strcmp(word2.c_str(), rightR.c_str())==0)
+	        cout<<"1"<<endl;
+	    else
+	        cout<<"0"<<endl;
+	    t--;
+	}
+	return 0;
+}
