@@ -1,0 +1,39 @@
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+#include <string>
+using namespace std;
+
+string removeDuplicates(string word){
+    int newI=0, old=1, n=word.length();
+    for(old=1;old<n;old++){
+        if(word[old-1]!=word[old])
+            word[newI++]=word[old-1];
+        else{
+            while(word[old-1]==word[old] && old<n)
+                old++;
+        }
+    }
+    word[newI++]=word[old-1];
+    word[newI]=word['\0'];
+    if(newI==n)
+        return word;
+    else{
+        word=word.substr(0,newI);
+        return removeDuplicates(word);
+    }
+}
+
+int main() {
+	//code
+	int t;
+	string word;
+	cin>>t;
+	while(t>0){
+	    cin>>word;
+	    word=removeDuplicates(word);
+	    cout<<word<<endl;
+	    t--;
+	}
+	return 0;
+}
