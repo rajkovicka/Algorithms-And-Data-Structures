@@ -1,0 +1,47 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+void parenthesisChecker(string word){
+    stack<char> st;
+    int i;
+    char c;
+    int n=word.length();
+    for(i=0;i<n;i++){
+        if(word[i]=='(' || word[i]=='[' || word[i]=='{')
+            st.push(word[i]);
+        else{
+            if(st.empty()){
+                cout<<"not balanced"<<endl;
+                return;
+            }
+            else{
+                c=st.top();
+                st.pop();
+                if(!(c=='(' && word[i]==')') && !(c=='[' && word[i]==']') && !(c=='{' && word[i]=='}')){
+                    cout<<"not balanced"<<endl;
+                    return;
+                }
+            }
+        }
+    }
+    if(st.empty())
+        cout<<"balanced"<<endl;
+    else
+        cout<<"not balanced"<<endl;
+    return;
+}
+
+int main() {
+	//code
+	int t;
+	string word;
+	cin>>t;
+	while(t>0){
+	    cin>>word;
+	    parenthesisChecker(word);
+	    t--;
+	}
+	return 0;
+}
