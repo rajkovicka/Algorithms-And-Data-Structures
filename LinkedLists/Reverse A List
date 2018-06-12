@@ -1,0 +1,19 @@
+/* Linked List Node structure
+   struct Node  {
+     int data;
+     Node *next;
+  }
+*/
+// Should reverse list and return new head.
+Node* reverse(Node *head)
+{
+  // Your code here
+  Node *p=head, *q=nullptr, *r=nullptr;
+  while(p){
+      q=p;
+      p=p->next;
+      q->next=r;
+      r=q;
+  }
+  return q;
+}
