@@ -1,0 +1,9 @@
+#include <algorithm>
+void pairWiseSwap(struct node *head)
+{
+   // The task is to complete this method
+    if(head!=nullptr && head->next!=nullptr){
+      swap(head->data, head->next->data);
+      pairWiseSwap(head->next->next);
+    }
+}
