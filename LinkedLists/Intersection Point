@@ -1,0 +1,37 @@
+/* Link list Node 
+struct Node {
+    int data;
+    struct Node* next;
+}; */
+/* Should return data of intersection point of two linked
+   lists head1 and head2.
+   If there is no intersecting point, then return -1. */
+int intersectPoint(Node* head1, Node* head2)
+{
+    // Your Code Here
+    if(!head1 || !head2)
+        return -1;
+    Node *curr1=head1, *end, *curr2=head2;
+    int counter=1;
+    while(curr1->next){
+        counter++;
+        curr1=curr1->next;
+    }
+    end=curr1;
+    end->next=head1;
+    while(curr2 && counter>0){
+        counter--;
+        curr2=curr2->next;
+    }
+    if(!curr2)
+        return -1;
+    curr1=head2;
+    while(curr1 && curr2 && curr1!=curr2){
+        curr1=curr1->next;
+        curr2=curr2->next;
+    }
+    if(!curr1 || !curr2)
+        return -1;
+    end->next=nullptr;
+    return curr1->data;
+}
