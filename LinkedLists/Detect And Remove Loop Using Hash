@@ -1,0 +1,26 @@
+/*The structure of linked list is the following
+struct Node
+{
+int data;
+Node* next; 
+};*/
+/*The function removes the loop from the linked list if present
+You are required to complete this method*/
+#include <map>
+void removeTheLoop(Node *node)
+{
+     //Your code here
+     Node *curr=node;
+     map<Node*, Node*> m1;
+     map<Node*, Node*>::iterator it;
+     while(curr->next){
+         it=m1.find(curr->next);
+         if(it==m1.end())
+            m1.insert(std::pair<Node*, Node*>(curr->next,curr));
+         else{
+             curr->next=nullptr;
+             return;
+         }
+         curr=curr->next;
+     }
+}
